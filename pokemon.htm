@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pokemon</title>
+  <style type="text/css">
+    @font-face {
+        font-family: "Pokemon GB";
+        src: url('assets/font/Pokemon_GB.ttf');
+    }
+    body {
+        background:  #ff00ff; /* used for chroma key */
+    }
+    .pokemon {
+        display: none; /* hide boxes when page loads so they don't flash when filled with stuff */
+        font-family: "Pokemon GB";
+        color:  #fff;
+        background-color:  #000;
+        width: 700px;
+        height: 74px;
+        padding: 10px;
+        margin: 5px 0;
+        position: relative;
+        background: rgba(0, 0, 0, 1) url("assets/img/bg_left.png") no-repeat scroll 0 center;
+    }
+    .sprite {
+        position: absolute;
+        left: 10px;
+        top: 50%; /* vertically center sprite */
+        transform: translateY(-50%); /* vertically center sprite */
+    }
+    .name {
+        position: absolute;
+        font-size: 50px;
+        top: 26px;
+        left:  100px;
+    }
+    .level {
+        position: absolute;
+        font-size: 16px;
+        top:  7px;
+        right:  7px;
+    }
+    .ball {
+        position: absolute;
+        height: 30px;
+        right: 7px;
+        bottom: 7px;
+    }
+
+    /* above is default/odd/left aligned
+    below is even/right aligned boxes */
+    .pokemon.even {
+        background-image: url("assets/img/bg_right.png");
+        background-position: right;
+    }
+    .even .sprite {
+        left: auto;
+        right: 10px;
+    }
+    .even .name {
+        left: auto;
+        right: 100px;
+    }
+    .even .level {
+        left: 7px;
+    }
+    .even .ball {
+        left: 7px;
+    }
+  </style>
+</head>
+
+<body>
+<!--
+sprites are from https://pokemondb.net/sprites/
+using generation 5, normal
+"Black 2
+White 2
+Black
+White
+Animated"
+-->
+<div class="pokemon odd" id="pokemon_1">
+    <img class="sprite" src="" />
+    <span class="name"></span>
+    <span class="level"></span>
+    <img class="ball" src="assets/img/pokeball.png" />
+</div>
+
+<div class="pokemon even" id="pokemon_2">
+    <img class="sprite" src="" />
+    <span class="name"></span>
+    <span class="level"></span>
+    <img class="ball" src="assets/img/pokeball.png" />
+</div>
+
+<div class="pokemon odd" id="pokemon_3">
+    <img class="sprite" src="" />
+    <span class="name"></span>
+    <span class="level"></span>
+    <img class="ball" src="assets/img/pokeball.png" />
+</div>
+
+<div class="pokemon even" id="pokemon_4">
+    <img class="sprite" src="" />
+    <span class="name"></span>
+    <span class="level"></span>
+    <img class="ball" src="assets/img/pokeball.png" />
+</div>
+
+<div class="pokemon odd" id="pokemon_5">
+    <img class="sprite" src="" />
+    <span class="name"></span>
+    <span class="level"></span>
+    <img class="ball" src="assets/img/pokeball.png" />
+</div>
+
+<div class="pokemon even" id="pokemon_6">
+    <img class="sprite" src="" />
+    <span class="name"></span>
+    <span class="level"></span>
+    <img class="ball" src="assets/img/pokeball.png" />
+</div>
+
+<!-- livereload script from livereload.com program -->
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+<!-- pokemon.json is from vba-rr -->
+<script type="text/javascript" src="pokemon.json"></script>
+
+<!-- this is a list of pokemon, the id is index - 1 -->
+<script type="text/javascript" src="assets/js/pokemon_names.js"></script>
+
+<!-- javascript library to make things easier -->
+<script type="text/javascript" src="assets/js/jquery-3.2.1.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        // loop through pokemon party
+        for (var i = 0; i < pokemon_data.party.length; i++) {
+            var pokemon = pokemon_data.party[i];
+            var slot = i + 1; // +1 since game id's start at 1 but in js we start at 0
+            if ( pokemon.id == 255 ) { // pokemon slot is empty
+                // hide pokemon slot
+                $("#pokemon_"+slot).hide();
+            } else {
+                // load sprite, set name, level and then show box
+                var $sprite = $("#pokemon_"+slot+ " .sprite");
+                $sprite.prop("src", "assets/img/pokemon/" + pokemon.id + ".gif");
+                $("#pokemon_"+slot+ " .name").text(pokemon.nickname);
+                $("#pokemon_"+slot+ " .level").text("Level: " + pokemon.level);
+                $("#pokemon_"+slot).show();
+            }
+        }
+
+        // center smaller sprites horizontally over background pokeball
+        var $sprite = $('.sprite');
+        $sprite.on('load', function(){
+            var $sprite = $(this);
+            var width =  $sprite.width();
+            var alignment = "left";
+            if ( $sprite.closest('.even').length > 0 ) {
+                alignment = "right";
+            }
+            if ( width < 74 ) {
+                $sprite.css(alignment, ((74-width) / 2) + 10);
+            }
+        });
+
+    });
+</script>
+</body>
+</html>
