@@ -1,5 +1,8 @@
-# pokemonblue
-Outputs Pokemon (Name, Level) from emulator to htm file. Useful for streaming.
+# Pokemon Blue Team Overlay/Widget/Tracker
+
+The goal is to allow your viewers to see your Pokemon Blue team without you having to manually update anything or show them through the in-game interface.
+
+How it works is as you play the game your Pokemon team is saved to an htm file with their names and levels. Whenever your team changes, the htm file is updated. You view the htm file in a web browser which allows you to capture and add the team to your stream overlay. The program [Livereload](http://livereload.com/) monitors the htm file for changes and refreshes the webpage so that your viewers will see team updates as they happen live. It's all done automatically. You just need to play the game and have fun!
 
 ---
 
@@ -21,7 +24,7 @@ __TO ADD THE REST:__
 * Load Pokemon Blue rom
 * In vba-rr goto Tools > Lua Scripting > New Lua Scripting Window... 
 * In the new window click Browse... and select the pokemon.lua file. 
-* Click the Run button and play game.
+* Click the Run button and play!
 
 ---
 
