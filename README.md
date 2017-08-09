@@ -1,8 +1,8 @@
 # Pokemon Blue Team Overlay/Widget/Tracker
 
-The goal is to allow your viewers to see your Pokemon Blue team without you having to manually update anything or show them through the in-game interface.
+The goal of this project is to allow your viewers to see your Pokemon Blue team without you having to manually update anything or show them through the in-game interface.
 
-How it works is as you play the game your Pokemon team is saved to an htm file with their names and levels. Whenever your team changes, the htm file is updated. You view the htm file in a web browser which allows you to capture and add the team to your stream overlay. The program [Livereload](http://livereload.com/) monitors the htm file for changes and refreshes the webpage so that your viewers will see team updates as they happen live. It's all done automatically. You just need to play the game and have fun!
+How it works is as you play the game your Pokemon team is saved to an json file with their names and levels. Whenever your team changes, the json file is updated. You view the html file in a web browser which allows you to capture and add the team to your stream overlay. The program [Livereload](http://livereload.com/) monitors the json file for changes and refreshes the webpage so that your viewers will see team updates as they happen live. It's all done automatically. You just need to play the game and have fun!
 
 ---
 
@@ -17,10 +17,11 @@ __TO ADD THE REST:__
 ---
 
 ## Install
+* Download [Pokemon Blue Team Overlay](https://github.com/hobbycoder7/pokemon-blue-team-overlay/archive/master.zip) and extract
 * Download [vba-rr / VBA-ReRecording](http://tasvideos.org/EmulatorResources/VBA.html)
 * Download [Livereload](http://livereload.com/)
-* Open Livereload
-* Open pokemon.htm in web browser
+* Open Livereload and set it up to watch the folder that Pokemon Blue Team Overlay was extracted to
+* Open pokemon.html in web browser
 * Load Pokemon Blue rom
 * In vba-rr goto Tools > Lua Scripting > New Lua Scripting Window... 
 * In the new window click Browse... and select the pokemon.lua file. 
